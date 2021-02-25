@@ -2,23 +2,25 @@ import React from "react";
 import {Container} from "reactstrap";
 import Header from "../header/header";
 import Catalog from "../catalog/catalog";
-import {BrowserRouter, Switch, Route} from "react-router-dom";
+import {BrowserRouter as Router} from "react-router-dom";
+import {Switch, Route} from "react-router";
 
 const MainPage = () => {
+
     return (
         <Container>
             <Header />
 
-            <BrowserRouter>
+            <Router>
                 <Switch>
+                    <Route path="/author/:authorId">
+                        <Catalog />
+                    </Route>
                     <Route path="/">
                        <Catalog />
                     </Route>
-                    <Route path="/author/:id">
-                        <Catalog />
-                    </Route>
                 </Switch>
-            </BrowserRouter>
+            </Router>
         </Container>
     );
 }

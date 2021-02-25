@@ -1,9 +1,12 @@
 import React, {useEffect, useState} from "react";
+import {useParams} from "react-router";
 import {Row, Col, Alert} from "reactstrap";
 
 import BookCard from "../book-card/book-card";
 
 const Catalog = () => {
+
+    let params = useParams();
 
     const getData = () => {
         fetch("/mock/books.json", {
@@ -16,7 +19,12 @@ const Catalog = () => {
             return response.json();
         })
         .then(function(jsonData) {
-            setBooks(jsonData);
+            if (params.authorId) {
+                let data = jsonData.filter(book => book.authors && book.authors.find(author => author.id === parseInt(params.authorId)));
+                setBooks(data);
+            } else {
+                setBooks(jsonData);
+            }
         });
     }
 
