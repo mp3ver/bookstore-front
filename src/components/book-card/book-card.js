@@ -9,7 +9,7 @@ const BookCard = (props) => {
 
             <p>
                 {
-                    props.book.authors && props.book.authors.map(author => <AuthorLink author={author} />)
+                    props.book.author
                 }
             </p>
 
@@ -18,8 +18,6 @@ const BookCard = (props) => {
                     props.book.genres.map(genre => genre.name).join(" ")
                 }
             </p>
-
-            <p>{props.book.excerpt || "No description"}</p>
 
             <Alert color={"success"}>{props.book.price}</Alert>
         </Col>

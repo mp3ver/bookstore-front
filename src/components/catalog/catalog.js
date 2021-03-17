@@ -1,44 +1,22 @@
 import React, {useEffect, useState} from "react";
-import {useParams} from "react-router";
+import {connect} from "react-redux";
 import {Row, Col, Alert} from "reactstrap";
+
+import {GetBooks} from "../../redux/reducers/books";
 
 import BookCard from "../book-card/book-card";
 
-const Catalog = () => {
-
-    let params = useParams();
-
-    const getData = () => {
-        fetch("/mock/books.json", {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                }
-            })
-        .then(function(response) {
-            return response.json();
-        })
-        .then(function(jsonData) {
-            if (params.authorId) {
-                let data = jsonData.filter(book => book.authors && book.authors.find(author => author.id === parseInt(params.authorId)));
-                setBooks(data);
-            } else {
-                setBooks(jsonData);
-            }
-        });
-    }
-
-    const [books, setBooks] = useState([]);
+const Catalog = (props) => {
 
     useEffect(() => {
-        getData();
+        props.getBooks();
     }, []);
 
     return (
         <div>
             <Row xs={"3"}>
                 {
-                    books.map(book => {
+                    props.books && props.books.map(book => {
                         return (
                             <BookCard key={`book-${book.id}`} book={book} />
                         )
@@ -49,4 +27,12 @@ const Catalog = () => {
     );
 }
 
-export default Catalog;
+const mapDispatchToProps = dispatch => {
+    return {
+        getBooks: () => dispatch(new GetBooks())
+    }
+}
+
+export default connect(state => ({
+    books: state.books.books
+}), mapDispatchToProps)(Catalog);
