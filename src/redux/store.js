@@ -1,11 +1,7 @@
 import {createStore, applyMiddleware} from "redux";
 import thunk from "redux-thunk";
-import promise from "redux-promise-middleware";
 import {createLogger} from "redux-logger";
-import {composeWithDevTools} from "redux-devtools-extension";
-
 import reducers from "./reducers/reducers"
-import {GetBooks} from "./reducers/books";
 
 import booksMiddleware from "./middleware/books"
 
@@ -25,5 +21,7 @@ export default function configureStore() {
 
     // create a new store and return it
     var store = createStore(reducers, {},  middleware);
+
+    // store.dispatch();
     return store;
 }

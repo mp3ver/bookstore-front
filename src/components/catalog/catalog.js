@@ -2,7 +2,8 @@ import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import {Row, Col, Alert} from "reactstrap";
 
-import {GetBooks} from "../../redux/reducers/books";
+import {GetBooks} from "../../redux/actions/books";
+import {selectBooks} from "../../redux/selectors/books";
 
 import BookCard from "../book-card/book-card";
 
@@ -27,12 +28,14 @@ const Catalog = (props) => {
     );
 }
 
+const mapStateToProps = state => ({
+    books: selectBooks(state)
+})
+
 const mapDispatchToProps = dispatch => {
     return {
         getBooks: () => dispatch(new GetBooks())
     }
 }
 
-export default connect(state => ({
-    books: state.books.books
-}), mapDispatchToProps)(Catalog);
+export default connect(mapStateToProps, mapDispatchToProps)(Catalog);

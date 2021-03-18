@@ -1,4 +1,4 @@
-import {GetBooksAction, SetBooks} from "../reducers/books";
+import {GetBooksAction, SetBooks} from "../actions/books";
 
 /**
  * Middleware function
