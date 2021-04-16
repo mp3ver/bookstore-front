@@ -4,6 +4,10 @@ import {createLogger} from "redux-logger";
 import reducers from "./reducers/reducers"
 
 import booksMiddleware from "./middleware/books"
+import authorsMiddleware from "./middleware/authors"
+import orderMiddleWare from "./middleware/orders"
+import authMiddleware from "./middleware/auth"
+import registerMiddleware from "./middleware/registration"
 
 /**
  * To initialize the store
@@ -16,7 +20,11 @@ export default function configureStore() {
     // create middleware
     const middleware = applyMiddleware(...[
         thunk,
-        booksMiddleware()
+        booksMiddleware(),
+        authorsMiddleware(),
+        orderMiddleWare(),
+        authMiddleware(),
+        registerMiddleware(),
     ]);
 
     // create a new store and return it
