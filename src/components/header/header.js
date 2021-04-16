@@ -29,6 +29,10 @@ const Header = (props) => {
             <Label>
                 Current role: {props.role}
             </Label> */}
+
+            <h1 className="display-3">Книжный магазин</h1>
+
+            {/* <h1 className="display-3">Книжный магазин</h1>
             <p>
                 <Label>
                     Current role: {props.role}
@@ -36,55 +40,56 @@ const Header = (props) => {
             </p>
             <p>
                 <Button id="checkRoleButton" onClick={checkRole}>Check role</Button>
-            </p>
+            </p> */}
+
             <Breadcrumb>
-                {
-                    (!props.role || props.role === 'GUEST')
-                    &&
-                    <BreadcrumbItem>
-                        <NavLink to="/auth">Authorization</NavLink>
-                    </BreadcrumbItem>
-                }
-                {
-                    (!props.role || props.role === 'GUEST')
-                    &&
-                    <BreadcrumbItem>
-                        <NavLink to="/registration">Registration</NavLink>
-                    </BreadcrumbItem>
-                }
                 {
                     (props.role && (props.role === "CUSTOMER" || props.role === "ADMIN" || props.role === 'GUEST'))
                     &&
                     <BreadcrumbItem>
-                         <NavLink to="/catalog">Catalog</NavLink>
+                        <NavLink to="/catalog">Каталог</NavLink>
+                    </BreadcrumbItem>
+                }
+                {
+                    (!props.role || props.role === 'GUEST')
+                    &&
+                    <BreadcrumbItem>
+                        <NavLink to="/auth">Вход</NavLink>
+                    </BreadcrumbItem>
+                }
+                {
+                    (!props.role || props.role === 'GUEST')
+                    &&
+                    <BreadcrumbItem>
+                        <NavLink to="/registration">Регистрация</NavLink>
                     </BreadcrumbItem>
                 }
                 {
                     (props.role && (props.role === "CUSTOMER" || props.role === "ADMIN"))
                     &&
                     <BreadcrumbItem>
-                         <NavLink to="/basket">Basket</NavLink>
+                         <NavLink to="/basket">Корзина</NavLink>
                     </BreadcrumbItem>
                 }
                 {
                     (props.role &&  props.role === "CUSTOMER")
                     &&
                     <BreadcrumbItem>
-                         <NavLink to="/customer/orders">My Orders</NavLink>
+                         <NavLink to="/customer/orders">Мои заказы</NavLink>
                     </BreadcrumbItem>
                 }
                 {
                     (props.role &&  props.role === "ADMIN")
                     &&
                     <BreadcrumbItem>
-                         <NavLink to="/admin/authors">Authors</NavLink>
+                         <NavLink to="/admin/authors">Авторы</NavLink>
                     </BreadcrumbItem>
                 }
                 {
                     (props.role &&  props.role === "ADMIN")
                     &&
                     <BreadcrumbItem>
-                         <NavLink to="/admin/orders">Orders</NavLink>
+                         <NavLink to="/admin/orders">Заказы</NavLink>
                     </BreadcrumbItem>
                 }
                 {/* <BreadcrumbItem><a href="#">Home</a></BreadcrumbItem>
@@ -97,7 +102,7 @@ const Header = (props) => {
             {
                 (props.role &&  (props.role === "CUSTOMER" || props.role === "ADMIN"))
                 &&
-                <Button id="logOutButton" onClick={doLogOut}>Log out</Button>
+                <Button id="logOutButton" onClick={doLogOut}>Выход</Button>
             }
         </Jumbotron>
     );

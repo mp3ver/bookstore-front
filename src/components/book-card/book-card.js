@@ -30,6 +30,15 @@ const BookCard = (props) => {
             </p> */}
 
             <Alert color={"success"}>{props.book.price}</Alert>
+            {
+                    () => {
+                        for (let i = 0; i < 10; i++) { 
+                            return(
+                                <p> </p>
+                            )
+                          }
+                    }
+            }
             {/* <Button onClick={addToBasket}>Something</Button> */}
         </Col>
     );

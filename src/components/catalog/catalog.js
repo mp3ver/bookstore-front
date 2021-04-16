@@ -42,7 +42,7 @@ const Catalog = (props) => {
                                 {
                                     (props.role && (props.role === 'CUSTOMER' || props.role === 'ADMIN' ))
                                     &&
-                                    <Button onClick={ () => addToBasket(book.id)}>Add to basket</Button>
+                                    <Button onClick={ () => addToBasket(book.id)}>Добавить в корзину</Button>
                                 }
                                 {/* <Button onClick={ () => addToBasket(book.id)}>Add to basket</Button> */}
                             </div>
